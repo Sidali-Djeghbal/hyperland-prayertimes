@@ -28,10 +28,13 @@ from prayertimes.config import DEFAULT_CONFIG, CONFIG_PATH, save_config
 from prayertimes.geo import auto_detect_location, resolve_location
 
 
-def safe_input(prompt):
+def tty_input(prompt):
     try:
-        return input(prompt)
-    except EOFError:
+        with open("/dev/tty", "r", encoding="utf-8") as tty_in, open("/dev/tty", "w", encoding="utf-8") as tty_out:
+            tty_out.write(prompt)
+            tty_out.flush()
+            return tty_in.readline().strip()
+    except Exception:
         return ""
 
 
@@ -45,14 +48,19 @@ except FileNotFoundError:
 config["location"] = "Auto"
 config.setdefault("locations", {})
 
+interactive = os.path.exists("/dev/tty")
+
 try:
     location_key, loc = auto_detect_location(config)
     label = loc.get("label") or location_key
-    answer = safe_input(f"Is your place '{label}'? [y/n] ").strip().lower()
+    if interactive:
+        answer = tty_input(f"Is your place '{label}'? [y/n] ").strip().lower()
+    else:
+        answer = ""
     if answer in {"", "y", "yes"}:
         config["location"] = location_key
     else:
-        manual = safe_input("Enter your location: ").strip()
+        manual = tty_input("Enter your location: ").strip() if interactive else ""
         if manual:
             config.setdefault("locations", {})[manual] = {
                 "query": manual,
@@ -64,7 +72,7 @@ try:
             config["location"] = location_key
 except Exception as exc:
     print(f"Auto-detect failed: {exc}")
-    manual = safe_input("Enter your location: ").strip()
+    manual = tty_input("Enter your location: ").strip() if interactive else ""
     if manual:
         config.setdefault("locations", {})[manual] = {
             "query": manual,
