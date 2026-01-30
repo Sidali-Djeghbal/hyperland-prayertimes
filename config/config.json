@@ -1,21 +1,8 @@
 {
-  "location": "Guelma",
-  "locations": {
-    "Guelma": {
-      "lat": 36.4629,
-      "lng": 7.4339,
-      "tz": "Africa/Algiers",
-      "label": "Guelma, Algeria"
-    },
-    "Biskra": {
-      "lat": 34.8504,
-      "lng": 5.7280,
-      "tz": "Africa/Algiers",
-      "label": "Biskra, Algeria"
-    }
-  },
-  "default_tz": "Africa/Algiers",
-  "default_country": "Algeria",
+  "location": "Auto",
+  "locations": {},
+  "default_tz": null,
+  "default_country": null,
   "method": "Egyptian",
   "asr_method": "Standard",
   "imsak_minutes": 10,

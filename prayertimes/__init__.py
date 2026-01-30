@@ -1,0 +1,1 @@
+"""Prayer times Waybar module."""
