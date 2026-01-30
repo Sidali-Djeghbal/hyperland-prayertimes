@@ -31,11 +31,11 @@ List methods (limited to MWL, Egyptian, Makkah):
 Switch to a location (auto search if not saved):
 
 ```
-~/.config/waybar/scripts/prayertimes.py --use-location Biskra
+~/.config/waybar/scripts/prayertimes.py --use-location algiers
 
-Example for town + city (auto resolves via OpenStreetMap):
+Example for commune + city (auto resolves via OpenStreetMap):
 
-~/.config/waybar/scripts/prayertimes.py --use-location foughala-biskra
+~/.config/waybar/scripts/prayertimes.py --use-location draria-algiers
 ```
 
 Add a new location (and set it active). Coordinates optional:
