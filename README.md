@@ -1,5 +1,10 @@
 # hyperland-prayertimes
 
+![Waybar](https://img.shields.io/badge/Waybar-Module-2b2f36)
+![Hyprland](https://img.shields.io/badge/Hyprland-Compatible-1f6feb)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)
+![Maintenance](https://img.shields.io/badge/Maintained-yes-22c55e)
+
 Waybar prayer times module with a countdown, built for Hyprland.
 
 ## Features
@@ -7,6 +12,12 @@ Waybar prayer times module with a countdown, built for Hyprland.
 - Tooltip with all daily times
 - Multiple calculation methods
 - Configurable offsets and locations
+
+
+## Screenshots
+
+![Widget in Waybar](public/screenshot1.png)
+![Tooltip preview](public/screenshot2.png)
 
 ## Install
 From this repo:
@@ -75,3 +86,15 @@ Fields you can customize:
 - `scripts/prayertimes.py`: thin entrypoint for Waybar
 - `prayertimes/`: module code (config, geo, calc, rendering, CLI)
 - `config/config.json`: default config template
+
+
+## Contributing
+
+Contributions are welcome.
+
+- Open an issue to discuss changes or bugs.
+- Fork the repo and create a feature branch.
+- Keep changes focused and update README if behavior changes.
+- Test locally (`./install.sh` then `pkill -SIGUSR2 waybar`).
+- Submit a PR with a clear description and screenshots if UI changes.
+

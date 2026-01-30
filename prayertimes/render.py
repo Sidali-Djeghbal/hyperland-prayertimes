@@ -6,7 +6,7 @@ except Exception:  # pragma: no cover
     ZoneInfo = None
 
 from .calc import Coordinates, PrayTimes
-from .geo import auto_detect_location, resolve_location
+from .geo import auto_detect_location, resolve_location, clean_label
 from .methods import METHODS, PRAYER_ORDER
 from .config import save_config, CONFIG_PATH
 
@@ -134,7 +134,7 @@ def render_waybar(config):
     display_format = config.get("display", {}).get("format", "{next_name} {next_time} - {countdown}")
     text = display_format.format(next_name=next_name, next_time=next_time, countdown=countdown)
 
-    location_label = loc.get("label") or location_key
+    location_label = clean_label(loc.get("label") or location_key)
     tooltip = build_tooltip(
         times_today,
         tzinfo,

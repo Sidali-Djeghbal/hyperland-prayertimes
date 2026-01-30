@@ -1,4 +1,28 @@
 import json
+import re
+
+_LATIN_RE = re.compile(r"[A-Za-z]")
+_ARABIC_RE = re.compile(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]")
+_TIFINAGH_RE = re.compile(r"[\u2D30-\u2D7F]")
+_DIGIT_RE = re.compile(r"[0-9]")
+
+
+def clean_label(label):
+    parts = [p.strip() for p in label.split(",") if p.strip()]
+    kept = []
+    for part in parts:
+        if _TIFINAGH_RE.search(part):
+            continue
+        has_latin = _LATIN_RE.search(part) is not None
+        has_arabic = _ARABIC_RE.search(part) is not None
+        has_digit = _DIGIT_RE.search(part) is not None
+        if not (has_latin or has_arabic):
+            continue
+        if has_digit and not (has_latin or has_arabic):
+            continue
+        kept.append(part)
+    return ", ".join(kept) if kept else label
+
 import urllib.parse
 import urllib.request
 
@@ -42,6 +66,7 @@ def auto_detect_location(config):
 
     label_parts = [p for p in [city, region, country] if p]
     label = ", ".join(label_parts) if label_parts else city
+    label = clean_label(label)
 
     location_key = city or "Auto"
     config.setdefault("locations", {})[location_key] = {
@@ -88,7 +113,7 @@ def geocode_location(query):
     return {
         "lat": float(item["lat"]),
         "lng": float(item["lon"]),
-        "label": item.get("display_name", query)
+        "label": clean_label(item.get("display_name", query))
     }
 
 
