@@ -69,7 +69,7 @@ Fields you can customize:
 - `display.format`: format with `{next_name}`, `{next_time}`, `{countdown}`
 
 ## Notes
-- On first run, location auto-detects via IP geolocation and saves to your config.
+- Installer auto-detects location and asks you to confirm or enter it manually.
 
 ## Project layout
 - `scripts/prayertimes.py`: thin entrypoint for Waybar
