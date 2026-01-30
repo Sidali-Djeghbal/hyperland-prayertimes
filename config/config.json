@@ -1,0 +1,37 @@
+{
+  "location": "Guelma",
+  "locations": {
+    "Guelma": {
+      "lat": 36.4629,
+      "lng": 7.4339,
+      "tz": "Africa/Algiers",
+      "label": "Guelma, Algeria"
+    },
+    "Biskra": {
+      "lat": 34.8504,
+      "lng": 5.7280,
+      "tz": "Africa/Algiers",
+      "label": "Biskra, Algeria"
+    }
+  },
+  "default_tz": "Africa/Algiers",
+  "default_country": "Algeria",
+  "method": "Egyptian",
+  "asr_method": "Standard",
+  "imsak_minutes": 10,
+  "dhuhr_minutes": 0,
+  "maghrib_minutes": 0,
+  "isha_minutes": 0,
+  "adjustments": {
+    "fajr": 0,
+    "sunrise": 0,
+    "dhuhr": 0,
+    "asr": 0,
+    "maghrib": 0,
+    "isha": 0
+  },
+  "time_format": "24h",
+  "display": {
+    "format": "{next_name} {next_time} - {countdown}"
+  }
+}
